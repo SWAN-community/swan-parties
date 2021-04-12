@@ -16,11 +16,11 @@
         fetch('parties-domains.json')
         .then(res => res.json())
         .then(parties => {
-            txt += "<table><tr><th>Name</th><th>Domain</th></tr>"
+            var txt = "<table border='1'><tr><th>Name</th><th>Domain</th></tr>";
             for (p in parties) {
-                txt += "<tr><td>" + p.name + "</td><td>" + p.domain +"</td></tr>";
+                txt += "<tr><td>" + parties[p].name + "</td><td>" + parties[p].domain +"</td></tr>";
             }
-            txt += "</table>"    
+            txt += "</table>";
             document.getElementById("parties").innerHTML = txt;
         })
     </script>
