@@ -7,12 +7,8 @@ const fs = require('fs');
 
 try {
     // `source-file` and `out-file` input defined in action metadata file.
-    //const sourceFile = core.getInput('source-file');
-    //const outFile = core.getInput('out-file');
-
-    const sourceFile = 'D:\\Workspace\\swan\\swan-parties\\parties-domains.txt'
-    const outFile = 'D:\\Workspace\\swan\\swan-parties\\parties-domains.json'   
-
+    const sourceFile = core.getInput('source-file');
+    const outFile = core.getInput('out-file');
 
     const readInterface = readline.createInterface({
         input: fs.createReadStream(sourceFile),
@@ -39,12 +35,6 @@ try {
             fs.writeFileSync(outFile, data);
         });
     });
-
-    // Get the JSON webhook payload for the event that triggered the workflow
-    // const payload = JSON.stringify(github.context.payload, undefined, 2)
-    // console.log(`The event payload: ${payload}`);
-
-
 } catch (error) {
     // core.setFailed(error.message);
 }
