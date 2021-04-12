@@ -33,7 +33,8 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Check if parties-domains.json is changed
-        run: ./last-changed.sh
+        run: |
+          [ "$(git ls-files --modified | grep -c parties-domains.json)" -ge 1 ] && date > parties-domains-last-changed.txt
         shell: bash
 
       - name: Update resources
