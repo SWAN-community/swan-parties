@@ -24,12 +24,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name:
+      - name: Update parties
         id: update-parties
         uses: ./.github/actions/update-parties
         with: 
-          source-file: ${{ env.GITHUB_WORKSPACE }}/parties-domains.txt
-          out-file: ${{ env.GITHUB_WORKSPACE }}/parties-domains.json
+          source-file: ${{ github.workspace }}/parties-domains.txt
+          out-file: ${{ github.workspace }}/parties-domains.json
 
       # Runs a set of commands using the runners shell
       - name: Check if parties-domains.json is changed
