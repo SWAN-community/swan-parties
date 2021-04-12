@@ -2,6 +2,6 @@
 	{
 		"domain": "swan-demo.uk",
 		"name": "SWAN Demo Example",
-		"publicKeySPKI": "test"
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAN/FAlJyaC12g8mf4hupnckHSr7oXqd8\n1PmLkI3zHeR6u6yEf/7E60LB/8dBPNOtaCafExCurN4If7k50q2L+lMCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
 	}
 ]
