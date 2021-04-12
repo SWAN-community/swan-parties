@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parties</title>
+</head>
+
+<body>
+    <h1>Registered Parties</h1>
+    <div id="parties">
+        
+    </div>
+    <script>
+        fetch('parties-domains.json')
+        .then(res => res.json())
+        .then(parties => {
+            txt += "<table><tr><th>Name</th><th>Domain</th></tr>"
+            for (p in parties) {
+                txt += "<tr><td>" + p.name + "</td><td>" + p.domain +"</td></tr>";
+            }
+            txt += "</table>"    
+            document.getElementById("parties").innerHTML = txt;
+        })
+    </script>
+</body>
+</html>

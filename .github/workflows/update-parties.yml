@@ -1,0 +1,45 @@
+name: Update Parties
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name:
+        id: update-parties
+        uses: ./.github/actions/update-parties
+        with: 
+          source-file: '$GITHUB_WORKSPACE/parties-domains.txt'
+          out-file: '$GITHUB_WORKSPACE/parties-domains.json'
+
+      # Runs a set of commands using the runners shell
+      - name: Check if parties-domains.json is changed
+        run: ./last-changed.sh
+        shell: bash
+
+      - name: Update resources
+        uses: test-room-7/action-update-file@v1
+        with:
+            file-path: |
+                parties-domains.json
+                parties-domains-last-changed.txt
+            commit-msg: Update parties-domains.json
+            github-token: ${{ secrets.GITHUB_TOKEN }}

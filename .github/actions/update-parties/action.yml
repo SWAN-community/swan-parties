@@ -1,0 +1,17 @@
+name: 'Update Parties'
+description: 'Visits the OWID well-known endpoint on a list of domains and records if a valid response was received.'
+inputs:
+  source-file:
+    description: 'source file containing list of domains'
+    required: true
+    default: 'parties-domains.txt'
+  out-file:
+    description: 'output json file of domains and flag if OWID well-known endpoint is implemented.'
+    required: true
+    default: 'parties-domains.json'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'node12'
+  main: 'index.js'
