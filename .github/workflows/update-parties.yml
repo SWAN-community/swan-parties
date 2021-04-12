@@ -11,9 +11,8 @@ on:
       - main
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains a single job called "run"
   run:
     name: 'Update parties-domains.json'
     # The type of runner that the job will run on
@@ -21,7 +20,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository under $github.workspace
       - uses: actions/checkout@v2
 
       - name: Update parties
@@ -31,12 +30,16 @@ jobs:
           source-file: ${{ github.workspace }}/parties-domains.txt
           out-file: ${{ github.workspace }}/parties-domains.json
 
-      # Runs a set of commands using the runners shell
+      # Check if there are any changes to the parties-domains.json file.
+      # If there are are then write the date to the parties-domains-last-changed.txt
+      # file.
       - name: Check if parties-domains.json is changed
         run: |
           if [ "$(git ls-files --modified | grep -c parties-domains.json)" -ge 1 ]; then date > parties-domains-last-changed.txt; fi
         shell: bash
 
+      # Update parties-domains.json and parties-domains-last-changed.txt files.
+      # If there are no changes then no commits are made.
       - name: Update resources
         uses: test-room-7/action-update-file@v1
         with:

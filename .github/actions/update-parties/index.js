@@ -25,12 +25,30 @@ try {
 
         fetches.push(
             fetch(domain + '/owid/api/v2/creator')
-            .then(res => res.json())
-            );
+            .then(res => {
+                if (!res.ok) {
+                    throw 'Request failed. Status: ' + res.status;
+                }
+                return res.json();
+            }));
     });
 
     readInterface.on('close', function() {
-        Promise.all(fetches).then(creators => {
+        Promise.allSettled(fetches)
+        .then(results => {
+            var creators = [];
+            results.forEach(result => {
+                if (result.status == "fulfilled") {
+                    if (result.value.domain != undefined && 
+                        result.value.name != undefined &&
+                        result.value.publicKeySPKI != undefined) {
+                    creators.push(result.value);
+                    }
+                }
+            });
+            return creators;
+        })
+        .then(creators => {
             let data = JSON.stringify(creators, null, '\t');
             fs.writeFileSync(outFile, data);
         });
