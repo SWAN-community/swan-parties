@@ -3,26 +3,102 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parties</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/parties.css">
+    <title>SWAN Parties</title>
 </head>
 
 <body>
-    <h1>Registered Parties</h1>
-    <div id="parties">
-        
-    </div>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="#">SWAN Parties</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://swan-demo.uk">Swan Demo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/SWAN-community/swan/blob/main/model-terms.md">Model terms</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" id="search">
+                    <input id="search-input" class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search" readonly>
+                    <button id="search-submit" class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Search</button>
+                </form>
+            </div>
+      </nav>
+    </header>
+
+    <main role="main" class="container">
+        <div class="main-heading">
+            <h1>Secured Web Addressability Network (SWAN)<br> Registered Parties</h1>
+            <p class="lead">A list of the parties that have agreed to the SWAN Model Terms</p>
+        </div>
+        <div class ="container" id="parties">
+
+        </div>
+    </main>
+
+    <footer class="footer text-muted">
+        <div class="container">
+          <p class="float-right">
+            <a href="#">Back to top</a>
+          </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
     <script>
+        // Fuse options
+        const options = {
+            isCaseSensitive: false,
+            includeScore: true,
+            keys: [
+                "domain",
+                "name"
+            ]
+        };
+
+        var fuse = {}
+
         fetch('parties-domains.json')
         .then(res => res.json())
         .then(parties => {
-            var txt = "<table border='1'><tr><th>Name</th><th>Domain</th></tr>";
+            // enable fuse
+            fuse = new Fuse(parties, options);
+
+            // enable search
+            document.getElementById("search-input").removeAttribute("readonly");
+            document.getElementById("search-submit").removeAttribute("disabled");
+
+            // create table.
+            var txt = "<table class='table table-striped'><tr><th scope='col'>Name</th><th scope='col'>Domain</th></tr>";
+
             for (p in parties) {
-                txt += "<tr><td>" + parties[p].name + "</td><td>" + parties[p].domain +"</td></tr>";
+                txt += "<tr id='" + parties[p].domain +"''><td>" + parties[p].name + "</td><td>" + parties[p].domain +"</td></tr>";
             }
+
             txt += "</table>";
             document.getElementById("parties").innerHTML = txt;
-        })
+        });
+
+        // add search form event listener.
+        var form  = document.getElementById('search');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            var pattern = form.elements['search'].value;
+            var res = fuse.search(pattern)
+            console.log(res);
+
+            if(res.length > 0){
+                location.hash = "#" + res[0].item.domain;
+            }
+        });
     </script>
 </body>
 </html>
