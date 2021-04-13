@@ -6076,18 +6076,37 @@ try {
 
         fetches.push(
             fetch(domain + '/owid/api/v2/creator')
-            .then(res => res.json())
-            );
+            .then(res => {
+                if (!res.ok) {
+                    throw 'Request failed. Status: ' + res.status;
+                }
+                return res.json();
+            })
+            .catch(err => console.error(err)));
     });
 
     readInterface.on('close', function() {
-        Promise.all(fetches).then(creators => {
+        Promise.allSettled(fetches)
+        .then(results => {
+            var creators = [];
+            results.forEach(result => {
+                if (result.status == "fulfilled" && result.value != undefined) {
+                    if (result.value.domain != undefined && 
+                        result.value.name != undefined &&
+                        result.value.publicKeySPKI != undefined) {
+                    creators.push(result.value);
+                    }
+                }
+            });
+            return creators;
+        })
+        .then(creators => {
             let data = JSON.stringify(creators, null, '\t');
             fs.writeFileSync(outFile, data);
         });
     });
 } catch (error) {
-    // core.setFailed(error.message);
+    core.setFailed(error.message);
 }
 
 
