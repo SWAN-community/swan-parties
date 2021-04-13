@@ -30,7 +30,8 @@ try {
                     throw 'Request failed. Status: ' + res.status;
                 }
                 return res.json();
-            }));
+            })
+            .catch(err => console.error(err)));
     });
 
     readInterface.on('close', function() {
@@ -38,7 +39,7 @@ try {
         .then(results => {
             var creators = [];
             results.forEach(result => {
-                if (result.status == "fulfilled") {
+                if (result.status == "fulfilled" && result.value != undefined) {
                     if (result.value.domain != undefined && 
                         result.value.name != undefined &&
                         result.value.publicKeySPKI != undefined) {
