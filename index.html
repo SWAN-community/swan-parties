@@ -77,7 +77,7 @@
             document.getElementById("search-submit").removeAttribute("disabled");
 
             // create table.
-            var txt = "<table class='table table-striped'><tr><th scope='col'>Name</th><th scope='col'>Domain</th></tr>";
+            var txt = "<table class='table table-striped'><tr><th scope='col'>Organization Name</th><th scope='col'>Domain</th></tr>";
 
             for (p in parties) {
                 txt += "<tr id='" + parties[p].domain +"''><td>" + parties[p].name + "</td><td>" + parties[p].domain +"</td></tr>";
