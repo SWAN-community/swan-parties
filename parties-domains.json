@@ -1,7 +1,142 @@
 [
 	{
+		"domain": "51d.io",
+		"name": "51Degrees",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANEWnbTkYaoyEau8zvR1GzTV/+HZCUCr\nhwagZWXXYdA9g1MudH3LqVlkvctOpInGwiWZU+7oHdOqO29nUyaqpKUCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "51da.uk",
+		"name": "SWAN Operator A",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOFdqt3WHnftLkq4SAlSuhpQI8u56xzu\nCvu4y4216QcdAR/mtgv7U4QpnTmz4Xa9ryWdWjCdNPdbNnWWz/3sd/ECAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "51db.uk",
+		"name": "SWAN Operator B",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANZOof/um3D75s11dOatb6IwY+K4i5c6\neBQ0n5dB9jmyJi7+1OJ6R9TSojtSItDGBIIRJIxgilgka2uIgDAJp0cCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "51dc.uk",
+		"name": "pmcktest",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALcwSuoF5pg+AXDem0o66CUVHNR747+v\nvWmTYkJ7V03mli1UTK2vYSsRvVWFCL6UqhZK52qJKDezKBvv9I5mq0kCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "51dd.uk",
+		"name": "pmcktest",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANF9Y2w2LEiVfDHI95+QCIeFyASI2UBk\ndnnxvqT8enOycxFR+0dm3mDv4QEjFUNSq8PoB92ejFapGUcbjrjWKgkCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "51de.uk",
+		"name": "pmcktest",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL1bxQGKQjpi8g/KyljSyuZCuVot+Xs6\nUlHaW+cr504Bw4J7fV0m4eBoGK3OPR5lcPUyKt/6fKTE0toSeKfaELECAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "badssp.swan-demo.uk",
+		"name": "Bad Actor SSP",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALxzId7Xprrk91TwQ5M2lB9d6g+tXDDm\nj6Z9VQ68kzVe9lpD7ZTSlrMh+lerhZSpGtWh6rLIM+4YBV7hIvOEBWsCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "bidswitch.swan-demo.uk",
+		"name": "Bidswitch",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ8pVQDNLQ3xaBJc6ey6/rA/zrPytDbp\naaIyBC99DECMzbTffXG7DHsuqKmQjbPUAUYa+66dW7UIzlU6avt1/XsCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "centro.swan-demo.uk",
+		"name": "Centro",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALYRXckrQK+goXmF2j6s3BD0fPxYiqLo\njymU7xpZJsfI1Dx3m64wUlmiebNRZhKE7trD43hGGNeBW9ayKuYHI2MCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "cmp.swan-demo.uk",
+		"name": "SWAN CMP",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL7ICcuVv7ysh3EStAapRMY+f+1gJOvq\nfBjuigJGLf+PnAeepysF+CamRmWgE69ZkKnCyETgJTuZVWXBRF6v1aMCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "current-bun.uk",
+		"name": "Current Bun",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMfHdkJB8oGKk5ciXVUQxmL3ovl1OsBC\nja8p9iNBp4A5qYZ3Ct+hRhIZrccigG0otztuTYG774QKH67pxs1qOz8CAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "dataxu.swan-demo.uk",
+		"name": "DataXu",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL5eMP2TdUrJ0IAhEIGIaiapkKZFQ5FD\n+Kd1BAIwB9H7TIflJkHl8q+HQEWP6V6bt+mGB3KvRa/u+l3hWL0enkECAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "liveintent.swan-demo.uk",
+		"name": "Live Intent",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOiIjH7mzZU3sdw8jk172qCI0YnOa8bW\nxvJak8eR6Uo6s0JKdeIe2W46gLi1hzkGa2DIs8093QnMtn/TL2OqrjcCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "liveramp.swan-demo.uk",
+		"name": "Liveramp",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMoIldLETagfuOx7Xd54kFcJyyk2p8k8\n4uKrPxLIfEGM2f6HSTUINqQMk1aVPV5UbFDc5bZ/fTOaOcdgpX5G0vkCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "magnite.swan-demo.uk",
+		"name": "Magnite",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMElW9bOpHwa5tLIDEsopd8WwWjJ43HM\n4ILOmK+8IRsMI00E34NN/28upFYKZ8xt5nrvBGFtFq15SUlEGb3kM8kCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "mediamath.swan-demo.uk",
+		"name": "MediaMath",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANr6e6RvaOCoWBkcYuXlv28yZLdcYi/1\nvtQHwptFKJRoebBsKqYjke9Ijh0tRr+aAXkahgJLRMw/5a3UthjJ5o0CAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "new-pork-limes.uk",
+		"name": "New Pork Limes",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOw+bBvwxNUOY/hjJGkz35Xdm4H3y8BZ\nugQUukPojQLI5YS17PfwoGiZ5dRzDB2Sj7w3CJCdWtL21TMs5HdioM8CAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "oath.swan-demo.uk",
+		"name": "Oath (Verizon)",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOKIks8iViDMHzpgfXY/FVmShUMOwh3g\n/7WYqmb+mOViSDWf3rM6k7uP6NjPQqyP3mhNhc33wx/EEeXD17us3TcCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "pop-up.swan-demo.uk",
+		"name": "Pop Up Web Site",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALUkbhmxNy4EdiG/84IN60ee34Jin2ZL\nRM2zttl8MGry47yjNvUX0ZQerkKLxJW0OjdeOaZLlAUwbTh8Q8zJixsCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "pubmatic.swan-demo.uk",
+		"name": "Pubmatic",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL7V0e0PQJ+TAR3/RNiqW3TYko4kCvWA\n/KzF7NGK8foia/ZLdx2XwcdhBf/8yK9+6H2AU2ra2q5spsfMjduqbTMCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "quantcast.swan-demo.uk",
+		"name": "Quantcast",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALbf7XY5iE9qnw35Ya73Ogw3PXG9yGXG\n7aGvRhM1KC4C+Zu1C9txt89Gwf757IGfmXxsr2XifQI7gRt/rJbjMVcCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "smaato.swan-demo.uk",
+		"name": "Smaato",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMYEIDFHJNghhn0WI+Oo/Wrncgj+7okc\nKN5DstUz6SVKWFZyrTQ0qPqFOrzq02iv856/LyF1L3Fmul459LJdxksCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "swallow-pub.uk",
+		"name": "Swallow Exchange",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMe8/kTwDUT2cuQQg2JUP6+Q0s39bFxI\nEdTM6eT1imFwqA8EqqL+t3RpPh45w9WyXS7z4uIE1QM41+odw00FpcUCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
 		"domain": "swan-demo.uk",
 		"name": "SWAN Demo Example",
 		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAN/FAlJyaC12g8mf4hupnckHSr7oXqd8\n1PmLkI3zHeR6u6yEf/7E60LB/8dBPNOtaCafExCurN4If7k50q2L+lMCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "swan-pub.uk",
+		"name": "Swan DSP",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAPP0YLR1vfi0ouAx9oLSHHlZZhIrsL3Q\nxGyhbagbfMSx4ThrbzJ9AV8mBDtvTjs2YuxCbcvIKFVU4pk0nkmrwVkCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "swift-pub.uk",
+		"name": "Swift DSP",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALvrdYNg64myVtXgMHag6LB8OOroYbfE\ndOFJpKvArxq5kkrjQPZo/bAw5wmcksk1VbCWBIu/un5vVgCaGj+JUd0CAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "thetradedesk.swan-demo.uk",
+		"name": "The Trade Desk",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAO/1aR/+opCr4cR5VkwdjQguuZ6gKZoI\nsjVfbEw6RvXMcRHym9IVaOTV/GJ8ZkEBSEoFbrF8kS0kwW08eyS5SF0CAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
+	},
+	{
+		"domain": "zeta.swan-demo.uk",
+		"name": "Zeta Global",
+		"publicKeySPKI": "-----BEGIN RSA PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKGkQWhbeO0sFQXKxaElyMCa5MRxjtV0\nwRUkFSC3J4XtG0le6fK46DVg5n0HVJytkzmSynjqrykdQfQcRYbyBikCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n"
 	}
 ]
