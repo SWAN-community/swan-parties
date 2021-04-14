@@ -79,7 +79,7 @@
             update();
         });
 
-        // Fuse options
+        // fuse options
         const options = {
             isCaseSensitive: false,
             includeScore: true,
@@ -89,6 +89,7 @@
             ]
         };
 
+        // fuse object is created when the parties-domains.json file is loaded.
         var fuse = {}
 
         // add search form event listener.
@@ -104,6 +105,63 @@
             }
         });
 
+        // retry function.
+        function retryGetInfo(e) {
+            var elementId = e.getAttribute("data-info-row-id");
+            var element = document.getElementById(elementId);
+            getInfo(element);
+        }
+
+        // get the origanisation info from the swan.json file at the root of
+        // the organisation's domain.
+        function getInfo(element) {
+            var domain = element.getAttribute('data-domain');
+            if (domain.search(/^https?:\/\//) == -1) {
+                domain = 'http://' + domain;
+            }
+            var url = domain + '/swan.json';
+            fetch(url, { mode: 'cors' })
+            .then(res => {
+                // if response did not have a success status then return json
+                // result indicating as such.
+                if(!res.ok) {
+                    return {
+                        'description': 'Could not get party details.',
+                        'privacyPolicyUrl': '',
+                        'retry':  true
+                    };
+                }
+                // return parsed json response.
+                return res.json();
+            })
+            .catch(error => {
+                // if request failed then return json result indicating as such.
+                return {
+                    'description': 'Could not get party details.',
+                    'privacyPolicyUrl': '',
+                    'retry':  true
+                }; 
+            })
+            .then(content => {
+                var infoElement = document.getElementById(element.id + '-info')
+                var url = domain + content.privacyPolicyUrl;
+                // populate info element
+                var txt = `<p>
+                    ${content.description}
+                    </p>
+                    <p>
+                        ${!content.retry ? 
+                            `Privacy Policy: <a href="${url}">${url}</a>` :
+                            `<button onclick="retryGetInfo(this);" data-info-row-id="${element.id}">Retry</button>`}
+                    </p>`;
+                    infoElement.innerHTML = txt;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // update the table
         function update() {
             fetch(selected)
             .then(res => res.json())
@@ -126,6 +184,7 @@
                     </thead>
                     <tbody>`;
 
+                // loop over the parties to add the rows.
                 for (p in parties) {
                     txt += `<tr id="${parties[p].domain}" data-toggle="collapse" data-target="#accordion${p}" class="clickable">
                         <td>${parties[p].name}</td>
@@ -143,48 +202,18 @@
                 
                 document.getElementById('parties').innerHTML = txt;
 
+                // add an event listener to each row. On expanding the row, the
+                // organisation information will be retrieved from the swan.json
+                // file at the root of the domain.
                 $('.collapse').each(function(index) { 
                     $(this).on('show.bs.collapse', function (e) {
-                        var domain = e.target.getAttribute('data-domain');
-                        if (domain.search(/^https?:\/\//) == -1){
-                            domain = 'http://' + domain;
-                        }
-
-                        fetch(domain + '/swan.json', { mode: 'cors' })
-                        .then(res => {
-                            if(!res.ok) {
-                                return {
-                                    'description': res.status,
-                                    'privacyPolicyUrl': ''
-                                };
-                            }
-                            return res.json();
-                        })
-                        .catch(error => {
-                            return {
-                                    'description': 'Could not get party details',
-                                    'privacyPolicyUrl': ''
-                                }; 
-                        })
-                        .then(content => {
-                            var element = document.getElementById(e.target.id + '-info')
-                            var url = domain + content.privacyPolicyUrl;
-                            var txt = `<p>
-                                ${content.description}
-                                </p>
-                                <p>
-                                    ${content.privacyPolicyUrl != '' ?  `Privacy Policy: <a href="${url}">${url}</a>` : ''}
-                                </p>`;
-                            element.innerHTML = txt;
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
+                        getInfo(e.target);
                     });
                 });
             });
         }
 
+        // run the initial update.
         update();
     </script>
 </body>
