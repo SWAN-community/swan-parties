@@ -6,3 +6,7 @@ body {
     padding: 3rem 1.5rem;
     text-align: center;
 }
+.info {
+    max-width: 24px;
+    max-height: 24px;
+}

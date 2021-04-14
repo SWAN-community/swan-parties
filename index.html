@@ -36,7 +36,7 @@
                             </div>
                             <select class="form-control" id="select-source-file" aria-describedby="source-addon1">
                                 <option value="parties-domains.json">parties-domains.json</option>
-                                <option value="demo-parties-domains.json" selected>demo-parties-domains.json</option>
+                                <option value="demo-parties-domains.json">demo-parties-domains.json</option>
                             </select>
                         </div>
                     </form>
@@ -67,6 +67,8 @@
         </div>
     </footer>
 
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
     <script>
         var selected = 'demo-parties-domains.json';
@@ -110,19 +112,76 @@
                 fuse = new Fuse(parties, options);
 
                 // enable search
-                document.getElementById("search-input").removeAttribute("readonly");
-                document.getElementById("search-submit").removeAttribute("disabled");
+                document.getElementById('search-input').removeAttribute('readonly');
+                document.getElementById('search-submit').removeAttribute('disabled');
 
                 // create table.
-                var txt = "<table class='table table-striped'><tr><th scope='col'>Organisation Name</th><th scope='col'>Domain</th></tr>";
+                var txt = `<table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Organisation Name</th>
+                            <th scope="col">Domain</th>
+                            <th scope="col">Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
 
                 for (p in parties) {
-                    txt += "<tr id='" + parties[p].domain +"''><td>" + parties[p].name + "</td><td>" + parties[p].domain +"</td></tr>";
+                    txt += `<tr id="${parties[p].domain}" data-toggle="collapse" data-target="#accordion${p}" class="clickable">
+                        <td>${parties[p].name}</td>
+                        <td>${parties[p].domain}</td>
+                        <td><img class="info" src="img/noun_Info_1582932.svg"></td>
+                    </tr>
+                    <tr id="accordion${p}" class="collapse" data-domain="${parties[p].domain}">
+                        <td colspan="3">
+                            <div id="accordion${p}-info">Loading...</div>
+                        </td>
+                    </tr>`;
                 }
 
-                txt += "</table>";
+                txt += "</tbody></table>";
                 
-                document.getElementById("parties").innerHTML = txt;
+                document.getElementById('parties').innerHTML = txt;
+
+                $('.collapse').each(function(index) { 
+                    $(this).on('show.bs.collapse', function (e) {
+                        var domain = e.target.getAttribute('data-domain');
+                        if (domain.search(/^https?:\/\//) == -1){
+                            domain = 'http://' + domain;
+                        }
+
+                        fetch(domain + '/swan.json', { mode: 'cors' })
+                        .then(res => {
+                            if(!res.ok) {
+                                return {
+                                    'description': res.status,
+                                    'privacyPolicyUrl': ''
+                                };
+                            }
+                            return res.json();
+                        })
+                        .catch(error => {
+                            return {
+                                    'description': 'Could not get party details',
+                                    'privacyPolicyUrl': ''
+                                }; 
+                        })
+                        .then(content => {
+                            var element = document.getElementById(e.target.id + '-info')
+                            var url = domain + content.privacyPolicyUrl;
+                            var txt = `<p>
+                                ${content.description}
+                                </p>
+                                <p>
+                                    ${content.privacyPolicyUrl != '' ?  `Privacy Policy: <a href="${url}">${url}</a>` : ''}
+                                </p>`;
+                            element.innerHTML = txt;
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    });
+                });
             });
         }
 
