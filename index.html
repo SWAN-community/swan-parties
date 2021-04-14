@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/parties.css">
+    <link rel="icon" type="image/svg+xml" href="img/noun_Swan_3263882.svg">
     <title>SWAN Parties</title>
 </head>
 
@@ -20,11 +21,25 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://swan-demo.uk">Swan Demo</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="https://github.com/SWAN-community/swan/blob/main/model-terms.md">Model terms</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://swan.community">Swan Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://swan-demo.uk">Swan Demo</a>
+                    </li>
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="source-addon1">Source File</span>
+                            </div>
+                            <select class="form-control" id="select-source-file" aria-describedby="source-addon1">
+                                <option value="parties-domains.json">parties-domains.json</option>
+                                <option value="demo-parties-domains.json" selected>demo-parties-domains.json</option>
+                            </select>
+                        </div>
+                    </form>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" id="search">
                     <input id="search-input" class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search" readonly>
@@ -40,7 +55,7 @@
             <p class="lead">A list of the parties that have agreed to the SWAN Model Terms</p>
         </div>
         <div class ="container" id="parties">
-
+            Loading...
         </div>
     </main>
 
@@ -54,6 +69,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
     <script>
+        var selected = 'demo-parties-domains.json';
+        var selectSource = document.getElementById('select-source-file');
+        selectSource.addEventListener('change', (event) => {
+            document.getElementById("parties").innerHTML = "Loading...";
+            selected = event.target.value;
+            update();
+        });
+
         // Fuse options
         const options = {
             isCaseSensitive: false,
@@ -65,27 +88,6 @@
         };
 
         var fuse = {}
-
-        fetch('parties-domains.json')
-        .then(res => res.json())
-        .then(parties => {
-            // enable fuse
-            fuse = new Fuse(parties, options);
-
-            // enable search
-            document.getElementById("search-input").removeAttribute("readonly");
-            document.getElementById("search-submit").removeAttribute("disabled");
-
-            // create table.
-            var txt = "<table class='table table-striped'><tr><th scope='col'>Organization Name</th><th scope='col'>Domain</th></tr>";
-
-            for (p in parties) {
-                txt += "<tr id='" + parties[p].domain +"''><td>" + parties[p].name + "</td><td>" + parties[p].domain +"</td></tr>";
-            }
-
-            txt += "</table>";
-            document.getElementById("parties").innerHTML = txt;
-        });
 
         // add search form event listener.
         var form  = document.getElementById('search');
@@ -99,6 +101,32 @@
                 location.hash = "#" + res[0].item.domain;
             }
         });
+
+        function update() {
+            fetch(selected)
+            .then(res => res.json())
+            .then(parties => {
+                // enable fuse
+                fuse = new Fuse(parties, options);
+
+                // enable search
+                document.getElementById("search-input").removeAttribute("readonly");
+                document.getElementById("search-submit").removeAttribute("disabled");
+
+                // create table.
+                var txt = "<table class='table table-striped'><tr><th scope='col'>Organization Name</th><th scope='col'>Domain</th></tr>";
+
+                for (p in parties) {
+                    txt += "<tr id='" + parties[p].domain +"''><td>" + parties[p].name + "</td><td>" + parties[p].domain +"</td></tr>";
+                }
+
+                txt += "</table>";
+                
+                document.getElementById("parties").innerHTML = txt;
+            });
+        }
+
+        update();
     </script>
 </body>
 </html>
