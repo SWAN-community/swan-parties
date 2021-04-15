@@ -28,3 +28,4 @@ swift-pub.uk
 thetradedesk.swan-demo.uk
 zeta.swan-demo.uk
 test.com
+test.uk
