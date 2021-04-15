@@ -26,7 +26,8 @@ async function processPullRequest(owner, repo, number) {
 
     var domain = '';
 
-    console.log(`Files: ${files}`);
+    var filesString = JSON.stringify(files, undefined, 2);
+    console.log(`Files: ${filesString}`);
 
     // check that only one file has changed.
     if (files.length == 1) {
