@@ -6121,6 +6121,8 @@ async function processPullRequest(owner, repo, number) {
 
 async function run() {
     try {
+        console.log(`Event: ${github.context.eventName}`);
+        
         // get the repo info from the event context.
         const repo = github.context.repo;
 
