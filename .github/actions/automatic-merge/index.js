@@ -37,7 +37,13 @@ async function processPullRequest(owner, repo, number) {
             file.deletions == deletions &&
             file.changes == changes) {
                 // get the contents of the file.
-                var contents = await fetch(file.contents_url).then(res = res.txt());
+                var contents = await octokit.repos.getContents({
+                    owner,
+                    repo,
+                    fileName
+                }).then(result => {
+                    return Buffer.from(result.data.content, result.data.encoding).toString();
+                });
 
                 // get last non-blank line and set as domain.
                 var lines = contents.split('\n');
