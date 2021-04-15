@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const { Octokit } = require("@octokit/rest");
+const url = require('url');
 
 // get inputs
 const token = core.getInput('github-token', {required: true});
@@ -37,11 +37,14 @@ async function processPullRequest(owner, repo, number) {
             file.additions == additions &&
             file.deletions == deletions &&
             file.changes == changes) {
+                // get commit ref
+                var ref = new URL(file.contents_url).searchParams.get('ref');
                 // get the contents of the file.
-                var contents = await octokit.repos.getContents({
-                    owner,
-                    repo,
-                    fileName
+                var contents = await octokit.request('GET /repos/{owner}/{repo}/contents/{file}', {
+                    owner: owner,
+                    repo: repo,
+                    file: fileName,
+                    ref: ref
                 }).then(result => {
                     return Buffer.from(result.data.content, result.data.encoding).toString();
                 });
