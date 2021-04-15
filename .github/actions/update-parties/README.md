@@ -36,15 +36,9 @@ Install `vercel/ncc` by running this command in your terminal. `npm i -g @vercel
 
 Navigate to the action directory `cd ./.github/actions/update-parties`
 
-Compile the `index.js` file. `ncc build index.js --license licenses.txt`
 
-A new `dist/index.js` file with the code and the compiled modules will be created. You will also see an accompanying `dist/licenses.txt` file containing all the licenses of the node_modules.
+Compile the `index.js` file. `ncc build index.js`
 
-From the terminal, commit the updates to `action.yml`, `dist/index.js`, and `node_modules` files.
+The `dist/index.js` file with the code and the compiled modules will be created or modified.
 
-```bash
-git add action.yml dist/index.js node_modules/*
-git commit -m "Use vercel/ncc"
-git tag -a -m "My first action release" v1
-git push --follow-tags
-```
+Commit the updates to `action.yml`, `index.js`, `dist/index.js`, and `node_modules` files.
