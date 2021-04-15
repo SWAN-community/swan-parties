@@ -1,0 +1,24 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Auto Merge Domain
+
+# Controls when the action will run. 
+on:
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Auto merge
+        id: auto-merge
+        uses: ./.github/actions/automatic-merge
+        with: 
+          github-token: ${{ secrets.GITHUB_TOKEN }}
