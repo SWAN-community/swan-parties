@@ -5891,6 +5891,14 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 265:
+/***/ ((module) => {
+
+module.exports = eval("require")("@octokit/rest");
+
+
+/***/ }),
+
 /***/ 126:
 /***/ ((module) => {
 
@@ -6044,6 +6052,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(382);
 const github = __nccwpck_require__(294);
+const { Octokit } = __nccwpck_require__(265);
 
 // get inputs
 const token = core.getInput('github-token', {required: true});
