@@ -98,6 +98,8 @@ async function run() {
             }
         }
     } catch (error) {
+        const payload = JSON.stringify(github.context.payload, undefined, 2)
+        console.log(`The event payload: ${payload}`);
         core.setFailed(error.message);
     }
 }
