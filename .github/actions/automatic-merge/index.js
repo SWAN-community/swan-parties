@@ -62,15 +62,19 @@ async function processPullRequest(owner, repo, number) {
                     throw `Domain ${domain} is not valid`;
                 }
         } else {
-            return {
-                'merged': false,
-                'message': 'Did not meet requirements for auto merge.'
+            return { 
+                'data': {
+                    'merged': false,
+                    'message': 'Did not meet requirements for auto merge.'
+                }
             }
         }
     } else {
         return {
-            'merged': false,
-            'message': 'Too many files changed.'
+            'data':{
+                'merged': false,
+                'message': 'Too many files changed.'
+            }
         }
     }
     
