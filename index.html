@@ -117,7 +117,7 @@
         function getInfo(element) {
             var domain = element.getAttribute('data-domain');
             if (domain.search(/^https?:\/\//) == -1) {
-                domain = 'http://' + domain;
+                domain = 'https://' + domain;
             }
             var url = domain + '/swan.json';
             fetch(url, { mode: 'cors' })
