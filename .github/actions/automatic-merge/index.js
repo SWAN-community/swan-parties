@@ -77,6 +77,8 @@ async function processPullRequest(owner, repo, number) {
 
 async function run() {
     try {
+        console.log(`Event: ${github.context.eventName}`);
+        
         // get the repo info from the event context.
         const repo = github.context.repo;
 
@@ -94,7 +96,7 @@ async function run() {
             var pull_number = github.context.payload.pull_request.number;
             var result = await processPullRequest(repo.owner, repo.repo, pull_number);
             if (!result.merged) {
-                console.log(`PR ${element.number} not merged. Message: ${result.message}`);
+                console.log(`PR ${pull_number} not merged. Message: ${result.message}`);
             }
         }
     } catch (error) {
