@@ -1,0 +1,13 @@
+name: 'Automatic Merge'
+description: 'Automatically merge a pull request if it is a single line change to parties-domains.txt which adds a domain.'
+inputs:
+  file-path:
+    description: 'Path to the file to check'
+    required: true
+    default: 'parties-domains.txt'
+  token:
+    description: 'Github secret token'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'
