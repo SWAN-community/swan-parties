@@ -6070,12 +6070,9 @@ async function processPullRequest(owner, repo, number) {
 
     var domain = '';
 
-    var filesString = JSON.stringify(files, undefined, 2);
-    console.log(`Files: ${filesString}`);
-
     // check that only one file has changed.
-    if (files.length == 1) {
-        var file = files[0];
+    if (files.data && files.data.length == 1) {
+        var file = files.data[0];
         // check that the file is the correct file and that only one line has 
         // been added.
         if (file.filename == fileName &&
@@ -6132,10 +6129,12 @@ async function run() {
         // if this was not triggered by a PR then check all open PRs.
         if (github.context.eventName != 'pull_request') {
             var pulls = await github.request('GET /repos/{owner}/{repo}/pulls', repo);
-            for (var element of pulls) {
-                var result = await processPullRequest(repo.owner, repo.repo, element.number);
-                if (!result.merged) {
-                    console.log(`PR ${element.number} not merged. Message: ${result.message}`);
+            if (pulls.data) {
+                for (var pull of pulls.data) {
+                    var result = await processPullRequest(repo.owner, repo.repo, pull.number);
+                    if (!result.merged) {
+                        console.log(`PR ${pull.number} not merged. Message: ${result.message}`);
+                    }
                 }
             }
         } else {
