@@ -41,9 +41,13 @@
                         </div>
                     </form>
                 </ul>
-                <form class="form-inline my-2 my-lg-0" id="search">
-                    <input id="search-input" class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search" readonly>
+                <form class="form-inline my-2 my-lg-0" id="search" autocomplete="off">
+                    <div class="dropdown">
+                        <input id="search-input" class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search" data-toggle="dropdown" readonly>
+                        <div class="dropdown-menu" id="search-list" aria-labelledby="search-input"></div>
+                    </div>
                     <button id="search-submit" class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Search</button>
+                    
                 </form>
             </div>
       </nav>
@@ -93,15 +97,28 @@
         var fuse = {}
 
         // add search form event listener.
-        var form  = document.getElementById('search');
+        var form = document.getElementById('search');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             var pattern = form.elements['search'].value;
             var res = fuse.search(pattern)
-            console.log(res);
-
-            if(res.length > 0){
+            if (res.length > 0){
                 location.hash = "#" + res[0].item.domain;
+            }
+        });
+
+        // add listener for search input;
+        var searchInput = document.getElementById('search-input');
+        var searchList = document.getElementById('search-list');
+        searchInput.addEventListener('input', (event) => {
+            var pattern = event.target.value;
+            var res = fuse.search(pattern);
+            if (res.length > 0) {
+                var items = res.slice(0, 6).map(i => {
+                    return `<a class="dropdown-item" href="#${i.item.domain}">${i.item.name}</a>`
+                });
+                searchList.innerHTML = items.join('');
+                $('.dropdown-toggle').dropdown()
             }
         });
 

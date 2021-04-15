@@ -6,7 +6,19 @@ body {
     padding: 3rem 1.5rem;
     text-align: center;
 }
+
 .info {
     max-width: 24px;
     max-height: 24px;
+}
+
+tr.clickable {
+    transition: all 1s linear;
+    -webkit-transition: all 1s linear;
+}
+
+tr.clickable:target {    
+    background-color: rgb(255, 255, 110);
+    transition: all 1s linear;
+    -webkit-transition: all 1s linear;
 }
