@@ -6045,8 +6045,13 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(382);
 const github = __nccwpck_require__(294);
 
-const token = core.getInput('token', {required: true});
+const token = core.getInput('github-token', {required: true});
 const fileName = core.getInput('file-path', {required: true});
+
+const additions = core.getInput('additions');
+const deletions = core.getInput('deletions');
+const changes = core.getInput('changes');
+
 const octokit = github.getOctokit(token);
 
 const domainRegEx = /^(?!:\/\/)(?=.{1,255}$)((.{1,63}\.){1,127}(?![0-9]*$)[a-z0-9-]+\.?)$/;
@@ -6070,9 +6075,9 @@ async function processPullRequest(owner, repo, number){
         var file = files[0];
         if (file.filename == fileName &&
             file.status == "modified" &&
-            file.additions == 2 &&
-            file.deletions == 1 &&
-            file.changes == 3) {
+            file.additions == additions &&
+            file.deletions == deletions &&
+            file.changes == changes) {
                 var contents = await fetch(file.contents_url).then(res = res.txt());
 
                 domain = contents.substring(contents.lastIndexOf("\n"));
