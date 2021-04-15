@@ -6142,8 +6142,8 @@ async function run() {
             if (pulls.data) {
                 for (var pull of pulls.data) {
                     var result = await processPullRequest(repo.owner, repo.repo, pull.number);
-                    if (!result.merged) {
-                        console.log(`PR ${pull.number} not merged. Message: ${result.message}`);
+                    if (!result.data.merged) {
+                        console.log(`PR ${pull.number} not merged. Message: ${result.data.message}`);
                     }
                 }
             }
@@ -6151,8 +6151,8 @@ async function run() {
             // get the pr number from the event context and process.
             var pull_number = github.context.payload.pull_request.number;
             var result = await processPullRequest(repo.owner, repo.repo, pull_number);
-            if (!result.merged) {
-                console.log(`PR ${pull_number} not merged. Message: ${result.message}`);
+            if (!result.data.merged) {
+                console.log(`PR ${pull_number} not merged. Message: ${result.data.message}`);
             }
         }
     } catch (error) {
