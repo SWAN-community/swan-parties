@@ -5,9 +5,18 @@ inputs:
     description: 'Path to the file to check'
     required: true
     default: 'parties-domains.txt'
-  token:
+  github-token:
     description: 'Github secret token'
     required: true
+  additions:
+    required: false
+    default: 1
+  deletions: 
+    required: false
+    default: 0
+  changes: 
+    required: false
+    default: 1
 runs:
   using: 'node12'
   main: 'index.js'
