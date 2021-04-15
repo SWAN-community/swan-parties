@@ -23,8 +23,13 @@ line at the bottom of the file.
 
 When adding a domain:
 
-* Edit the `parties-domains.txt` file using the GitHub UI and propose changes.
+* Edit the `parties-domains.txt` file and create a pull request.
 
 * Only add one domain per line, prefix with `http://` or `https://` otherwise defaults to `https://`
 
 * Leave no trailing slash.
+
+* Make sure there is a new line at the end of the file.
+
+If these points are followed and the domain added is valid domain name then the 
+pull request will be merged automatically.
